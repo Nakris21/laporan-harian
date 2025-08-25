@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Input Laporan Harian Dukcapil</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="max-w-3xl mx-auto p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">Form Input Laporan Harian Dukcapil</h2>
+    <form id="laporanForm" class="bg-white shadow-lg rounded-xl p-6 space-y-4">
+      
+      <!-- Tanggal Laporan -->
+      <div>
+        <label class="block font-semibold mb-1">Tanggal Laporan</label>
+        <input type="date" name="tanggal_laporan" required 
+               class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300">
+      </div>
+
+      <!-- Kecamatan Dropdown -->
+      <div>
+        <label class="block font-semibold mb-1">Kecamatan</label>
+        <select name="kecamatan" required class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300">
+          <option value="">-- Pilih Kecamatan --</option>
+          <option>Paguyangan</option>
+          <option>Bumiayu</option>
+          <option>Tonjong</option>
+          <option>Sirampog</option>
+          <option>Salem</option>
+          <option>Bantarkawung</option>
+          <option>Brebes</option>
+          <option>Tegalreja</option>
+          <option>Larangan</option>
+          <!-- Tambahkan kecamatan lain sesuai kebutuhan -->
+        </select>
+      </div>
+
+      <!-- KK -->
+      <div class="grid grid-cols-3 gap-4">
+        <div>
+          <label class="block font-semibold mb-1">KK - Pendaftaran</label>
+          <input type="number" name="kk_pendaftaran" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">KK - Pengajuan</label>
+          <input type="number" name="kk_pengajuan" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">KK - Cetak</label>
+          <input type="number" name="kk_cetak" class="w-full p-2 border rounded-lg">
+        </div>
+      </div>
+
+      <!-- KTP -->
+      <div class="grid grid-cols-3 gap-4">
+        <div>
+          <label class="block font-semibold mb-1">KTP - Pendaftaran</label>
+          <input type="number" name="ktp_pendaftaran" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">KTP - Cetak</label>
+          <input type="number" name="ktp_cetak" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Perekaman KTP</label>
+          <input type="number" name="perekaman_ktp" class="w-full p-2 border rounded-lg">
+        </div>
+      </div>
+
+      <!-- KIA -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block font-semibold mb-1">KIA - Pendaftaran</label>
+          <input type="number" name="kia_pendaftaran" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">KIA - Cetak</label>
+          <input type="number" name="kia_cetak" class="w-full p-2 border rounded-lg">
+        </div>
+      </div>
+
+      <!-- Lain-lain -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block font-semibold mb-1">Aktivasi IKD</label>
+          <input type="number" name="aktivasi_ikd" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Stok Blangko KTP</label>
+          <input type="number" name="blangko_ktp" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Stok Blangko KIA</label>
+          <input type="number" name="blangko_kia" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Antrian KTP</label>
+          <input type="number" name="antrian_ktp" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Antrian KK</label>
+          <input type="number" name="antrian_kk" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Status SIDASI</label>
+          <input type="text" name="status_sidasi" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Layanan KIOS Desa</label>
+          <input type="text" name="layanan_kios" class="w-full p-2 border rounded-lg">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Status Internet</label>
+          <input type="text" name="status_internet" class="w-full p-2 border rounded-lg">
+        </div>
+      </div>
+
+      <!-- Tombol -->
+      <div class="text-center">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold">
+          Simpan Laporan
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwvSQhzPqjCM3aXUbPEVIw9SWNohszOMPX8F8ydZ6BCZ3mYGWQsIVBSQ_UqNiMlr3QQtw/exec"; // ganti dengan URL Web App dari Apps Script
+
+    document.getElementById("laporanForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      let formData = new FormData(this);
+      let data = {};
+      formData.forEach((value, key) => data[key] = value);
+
+      let res = await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      });
+
+      let text = await res.text();
+      alert(text);
+      this.reset();
+    });
+  </script>
+</body>
+</html>
